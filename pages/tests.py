@@ -5,19 +5,19 @@ from django.urls import reverse
 # Create your tests here.
 class HomePageTests(SimpleTestCase):
     def test_url_exists_at_correct_location(self):
-        response = self.client.get("/")
+        response = self.client.get("/pages/")
         self.assertEqual(response.status_code, 200)
 
     def test_url_available_by_name(self):
-        response = self.client.get(reverse("home"))
+        response = self.client.get(reverse("pages_home"))
         self.assertEqual(response.status_code, 200)
 
     def test_template_name_correct(self):
-        response = self.client.get(reverse("home"))
-        self.assertTemplateUsed(response, "home.html")
+        response = self.client.get(reverse("pages_home"))
+        self.assertTemplateUsed(response, "pages_home.html")
 
     def test_template_content(self):
-        response = self.client.get(reverse("home"))
+        response = self.client.get(reverse("pages_home"))
         self.assertContains(response, "<h1>Homepage</h1>")
 
 
